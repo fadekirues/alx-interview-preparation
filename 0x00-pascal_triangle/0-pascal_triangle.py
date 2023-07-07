@@ -1,36 +1,20 @@
 #!/usr/bin/python3
-"""Pascal's triangle module"""
-
-
-def get_next_triangle(old_list):
-    """gets next trianlge"""
-    initial_list = old_list
-    new_list = []
-    for i in range(len(initial_list)):
-        if (i == len(initial_list) - 1):
-            new_list.insert(0, 1)
-            new_list.append(1)
-            break
-        new_list.append(initial_list[i] + initial_list[i + 1])
-    return new_list
+"""A Module (function) that creates Pascal's triangle"""
 
 
 def pascal_triangle(n):
-    """returns a pascal's triangle list"""
-    overall_list = []
-    if n < 1:
-        return []
-
-    if n >= 1:
-        overall_list.append([1])
-
-    new_list = [1]
-    list_extension = []
-
+    """Creates a list of lists of integers representing
+    the Pascal's triangle of a given integer.
+    """
+    triangle = []
+    if type(n) is not int or n <= 0:
+        return triangle
     for i in range(n):
-        if (len(list_extension) != 0):
-            overall_list.append(list_extension)
-        list_extension = get_next_triangle(new_list)
-        new_list = list_extension
-
-    return overall_list
+        line = []
+        for j in range(i + 1):
+            if j == 0 or j == i:
+                line.append(1)
+            elif i > 0 and j > 0:
+                line.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
+        triangle.append(line)
+    return triangle

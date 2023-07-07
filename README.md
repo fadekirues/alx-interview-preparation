@@ -1,2 +1,1 @@
-# alx-interview
-ALX Interview Tasks
+alx-interview preparation
